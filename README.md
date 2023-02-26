@@ -114,7 +114,9 @@ insert into member(id, pass, name, nickname, phone, email, zipcode, addressroad,
 values('cofl000',1234, '임채리','채리쨩','010-1111-0000','cofl0000@naver.com','0000','경기도 수원시 권선구2','경수대로2','B',1);
 
 ----------------------------------------------------------------------------------------
+
 CREATE TABLE BOARD (
+
     NUM NUMBER(10) PRIMARY KEY,
     MEMBERID VARCHAR2(20) CONSTRAINT BOARD_ID_FK REFERENCES MEMBER(ID) ON DELETE CASCADE,
     PASS VARCHAR2(20) NOT NULL,
@@ -125,6 +127,7 @@ CREATE TABLE BOARD (
     READCOUNT NUMBER(30) DEFAULT 0,
     REPLYCNT NUMBER(30) DEFAULT 0,
     BLIND CHAR(10) DEFAULT 0
+    
 );
 
 CREATE SEQUENCE BOARD_SEQ;
@@ -135,6 +138,7 @@ commit;
 
 ----------------------------------------------------------------------------------------
 CREATE TABLE REPLY (
+
     REPLYNUM NUMBER(10) PRIMARY KEY,
     BOARDNUM NUMBER(10) CONSTRAINT FK_BOARD_NUM REFERENCES BOARD(NUM) ON DELETE CASCADE,
     MEMBERID VARCHAR2(20) CONSTRAINT FK_MEMBER REFERENCES MEMBER(ID) ON DELETE CASCADE,
@@ -142,6 +146,7 @@ CREATE TABLE REPLY (
     CONTENT VARCHAR2(4000) NOT NULL,
     REPLYDATE DATE DEFAULT SYSDATE,
     SECRET CHAR(10) DEFAULT 0 NOT NULL
+    
 );
 
 CREATE SEQUENCE REPLY_SEQ;
